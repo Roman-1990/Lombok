@@ -73,5 +73,18 @@ public class ReqresTests {
                 .body("token", is("QpwL5tke4Pnpja7X4"));
 
     }
+    @Test
+    void listUserTestGroovy() {
+        given()
+                .spec(Specs.request)
+                .when()
+                .get("/unknown")
+                .then()
+                .spec(Specs.response)
+                .log().body()
+                .body("data.findAll{it.id > 2}.id",
+                        hasItem(3));
+
+    }
 
 }
